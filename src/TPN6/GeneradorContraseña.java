@@ -48,23 +48,22 @@ public class GeneradorContraseña {
         String[] letrasMin="a-b-c-d-e-f-g-h-i-j-k-l-m-n-o-p-q-r-s-t-u-v-w-x-y-z".split("-");
         String[] letrasMay="A-B-C-D-E-F-G-H-I-J-K-L-M-N-O-P-Q-R-S-T-U-V-W-X-Y-Z".split("-");
         int cn=0,clmin=0,clmay=0;
-        String c;
         char d;
-                
+         
         for (int i=0; i<this.longitud;i++){
             d=this.contra.charAt(i);
-            c=""+d;
+            
             
             for (String numero : numeros) {
-                if (c.indexOf(numero)!=-1){cn++;}
+                if (numero.indexOf(d)!=-1){cn++;}
             }
             
             for (String letmay : letrasMay) {
-                if (c.indexOf(letmay)!=-1){clmin++;}
+                if (letmay.indexOf(d)!=-1){clmin++;}
             }
             
             for (String letmin : letrasMin) {
-                if (c.indexOf(letmin)!=-1){clmay++;}
+                if (letmin.indexOf(d)!=-1){clmay++;}
             }
         }
 
