@@ -11,7 +11,7 @@ package TPN7;
  */
 public class ExcepcionPropia extends RuntimeException{
     public ExcepcionPropia(){
-        super("El numero ingresado está fuera del rango");
+        super();
     }
 
     public ExcepcionPropia(String message) {
