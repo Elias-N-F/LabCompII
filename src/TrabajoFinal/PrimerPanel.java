@@ -1,27 +1,33 @@
 package TrabajoFinal;
 
 import javax.swing.*;
-import java.awt.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class PrimerPanel extends JPanel {
 
+    JLabel etiqueta1 = new JLabel();
+    JLabel etiqueta2 = new JLabel();
+
+    JTextField pregunta = new JTextField();
+    JRadioButton verdadero = new JRadioButton();
+    JRadioButton falso = new JRadioButton();
+
+    ArrayList<Preguntas> preguntas = new ArrayList();
+
     private String titulo;
+    private int cont = 0;
 
     public PrimerPanel() {
         titulo = "Examen de " + JOptionPane.showInputDialog("Ingrese nombre de la Materia");
-
         etiquetas();
         cajasdeTexto();
         botones();
-        JpanelNuevo jp1 = new JpanelNuevo(titulo);
-
-  
     }
 
     public String getTituloCompleto() {
-
         return titulo;
     }
 
@@ -31,30 +37,31 @@ public class PrimerPanel extends JPanel {
 
     private void etiquetas() {
 
-        JLabel etiqueta1 = new JLabel();
-        JLabel etiqueta2 = new JLabel();
         JLabel etiqueta3 = new JLabel();
 
         etiqueta3.setText(getTituloCompleto());
         etiqueta3.setBounds(75, 10, 500, 20);
         add(etiqueta3);
-
-        etiqueta1.setText("Ingrese Pregunta: ");
+        
+        setEtiquetas();
+        
         etiqueta1.setBounds(10, 50, 500, 20);
         add(etiqueta1);
 
-        etiqueta2.setText("Ingrese Respuesta: ");
         etiqueta2.setBounds(10, 110, 500, 20);
         add(etiqueta2);
     }
-
+    private void setEtiquetas(){
+    
+        etiqueta1.setText("Ingrese Pregunta: "+ cont);
+    
+        etiqueta2.setText("Ingrese Respuesta: "+ cont);
+    }
+    
     private void cajasdeTexto() {
-        JTextField pregunta = new JTextField();
+
         pregunta.setBounds(10, 80, 200, 23);
         add(pregunta);
-
-        JRadioButton verdadero = new JRadioButton();
-        JRadioButton falso = new JRadioButton();
 
         verdadero.setBounds(10, 140, 100, 23);
         verdadero.setText("VERDADERO");
@@ -66,28 +73,40 @@ public class PrimerPanel extends JPanel {
     }
 
     private void botones() {
-        JButton boton1 = new JButton();
         JButton boton2 = new JButton();
 
-        boton1.setBounds(10, 300, 100, 30);
-        boton1.setText("Guardar");
-        add(boton1);
         boton2.setBounds(150, 300, 100, 30);
-        boton2.setText("Finalizar");
+        boton2.setText("Continuar");
         add(boton2);
 
-        boton2.addActionListener(new CreadorDeVentnas());
+        boton2.addActionListener(new CreadorDeVentanas());
 
     }
 
-    private class CreadorDeVentnas implements ActionListener {
+    private class CreadorDeVentanas implements ActionListener {
 
-       @Override
+        @Override
         public void actionPerformed(ActionEvent e) {
-            // TODO Auto-generated method stub
+            if (!verdadero.isSelected() && falso.isSelected()) {
+                preguntas.add(new Preguntas(pregunta.getText(), false));
+                cont++;
+            } else if (verdadero.isSelected() && !falso.isSelected()) {
+                preguntas.add(new Preguntas(pregunta.getText(), true));
+                cont++;
+            } else {
+                System.out.println("nope");
+            }
+            
+            setEtiquetas();
+            if(cont==10){
 
-            JframeNuevo ventanaNueva = new JframeNuevo();
-            ventanaNueva.setVisible(true);
+                JframeNuevo f= new JframeNuevo(getTituloCompleto());
+                
+                PrimerPanel.this.setVisible(false);
+                
+                
+            }
+            
         }
     }
 }

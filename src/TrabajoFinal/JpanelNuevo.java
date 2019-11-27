@@ -13,13 +13,6 @@ public class JpanelNuevo extends JPanel {
 
     }
 
-    public JpanelNuevo() {
-
-        etiquetas();
-        botones();
-
-    }
-
     public String getTitulo() {
         return titulo;
     }
@@ -33,7 +26,7 @@ public class JpanelNuevo extends JPanel {
 
         JLabel etiqueta1 = new JLabel();
         JLabel etiqueta2 = new JLabel();
-        System.out.println(getTitulo());
+
         etiqueta2.setText(getTitulo());
         etiqueta2.setBounds(75, 10, 500, 20);
         add(etiqueta2);
@@ -48,7 +41,7 @@ public class JpanelNuevo extends JPanel {
         JRadioButton verdadero = new JRadioButton();
         JRadioButton falso = new JRadioButton();
         JButton siguiente = new JButton();
-        JButton entregar = new JButton();
+
 
         verdadero.setBounds(10, 100, 100, 30);
         verdadero.setText("VERDADERO");
@@ -57,14 +50,11 @@ public class JpanelNuevo extends JPanel {
         falso.setBounds(10, 130, 100, 30);
         falso.setText("FALSO");
         add(falso);
-        //falso.addActionListener(new PrimerPanel.CreadorDeVentnas());
+
         siguiente.setBounds(30, 200, 100, 30);
         siguiente.setText("Siguiente");
         add(siguiente);
 
-        entregar.setBounds(200, 200, 100, 30);
-        entregar.setText("Entregar");
-        add(entregar);
 
     }
 }
