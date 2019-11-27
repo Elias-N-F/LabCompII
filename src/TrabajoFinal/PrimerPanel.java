@@ -4,6 +4,10 @@ import javax.swing.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class PrimerPanel extends JPanel {
@@ -35,6 +39,10 @@ public class PrimerPanel extends JPanel {
         this.titulo = titulo1;
     }
 
+    public ArrayList getPreguntas() {
+        return preguntas;
+    }
+
     private void etiquetas() {
 
         JLabel etiqueta3 = new JLabel();
@@ -42,22 +50,23 @@ public class PrimerPanel extends JPanel {
         etiqueta3.setText(getTituloCompleto());
         etiqueta3.setBounds(75, 10, 500, 20);
         add(etiqueta3);
-        
+
         setEtiquetas();
-        
+
         etiqueta1.setBounds(10, 50, 500, 20);
         add(etiqueta1);
 
         etiqueta2.setBounds(10, 110, 500, 20);
         add(etiqueta2);
     }
-    private void setEtiquetas(){
-    
-        etiqueta1.setText("Ingrese Pregunta: "+ cont);
-    
-        etiqueta2.setText("Ingrese Respuesta: "+ cont);
+
+    private void setEtiquetas() {
+
+        etiqueta1.setText("Ingrese Pregunta: " + cont);
+
+        etiqueta2.setText("Ingrese Respuesta: " + cont);
     }
-    
+
     private void cajasdeTexto() {
 
         pregunta.setBounds(10, 80, 200, 23);
@@ -96,17 +105,15 @@ public class PrimerPanel extends JPanel {
             } else {
                 System.out.println("nope");
             }
-            
-            setEtiquetas();
-            if(cont==10){
 
-                JframeNuevo f= new JframeNuevo(getTituloCompleto());
-                
+            setEtiquetas();
+            if (cont == 10) {
+
+                JframeNuevo f = new JframeNuevo(getTituloCompleto(), getPreguntas());
                 PrimerPanel.this.setVisible(false);
-                
-                
+
             }
-            
+
         }
     }
 }

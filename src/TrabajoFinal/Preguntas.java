@@ -5,13 +5,15 @@
  */
 package TrabajoFinal;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Usuario
  */
-public class Preguntas {
-    String p;
-    String r;
+public class Preguntas implements Serializable {
+    private String p;
+    private String r;
 
     public Preguntas(String p, boolean r) {
         this.p = p;
@@ -21,8 +23,14 @@ public class Preguntas {
         else{this.r="falso";}
     }
      
-    public String todo(){
-    
-    return "Pregunta: "+p+" Respuesta: "+r;
+    public String getP() {
+        return p;
     }
+
+    public String getR() {
+        return r;
+    }
+    
+    
+    
 }
