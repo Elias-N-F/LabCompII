@@ -120,7 +120,9 @@ public class JpanelNuevo extends JPanel {
         public void actionPerformed(ActionEvent e) {
 
             // TODO Auto-generated method stub
+            if(grupoBotones.isSelected(verdadero.getModel())||grupoBotones.isSelected(falso.getModel())){
             pos++;
+            }
             if (pos == (preguntas.length)) {
                 /**
                  * Aca con esto anulo los botones asta que deba utilizar.
@@ -154,11 +156,13 @@ public class JpanelNuevo extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             // TODO Auto-generated method stub
+            
             if (pos < opcion.length) {
                 opcion[pos] = verdadero.getText();
                 /**
                  * Si Preciona el boton verdadero sucede esto
                  */
+                
             } else {
                 /**
                  * Va guardando los getlabel, tipo el titulo del boton en una
@@ -174,12 +178,15 @@ public class JpanelNuevo extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            
             // TODO Auto-generated method stub
             if (pos < opcion.length) {
+                
                 opcion[pos] = falso.getText();
                 /**
                  * Si Preciona el boton falso sucede esto
                  */
+                
             } else {
 
             }
@@ -198,15 +205,16 @@ public class JpanelNuevo extends JPanel {
                 }
             }
             System.out.println(cont);
-
-
+            cont=cont*100;
+            int calif= cont/(preguntas.length*10);
+            
             /**
              * Aca nose porque me aparece 0 cuando responde solo una pregunta
              * buena
              */
 
-            JOptionPane.showMessageDialog(null, "Tu calificacion es " + cont);
-
+            JOptionPane.showMessageDialog(null, "Tu calificacion es " + calif+"/10");
+            System.exit(0);
         }
     }
 }

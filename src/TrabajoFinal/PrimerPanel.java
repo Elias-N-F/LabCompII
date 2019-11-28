@@ -4,31 +4,54 @@ import javax.swing.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class PrimerPanel extends JPanel {
 
-    JLabel etiqueta1 = new JLabel();
-    JLabel etiqueta2 = new JLabel();
+    private JLabel etiqueta1 = new JLabel();
+    private JLabel etiqueta2 = new JLabel();
 
-    JTextField pregunta = new JTextField();
-    JRadioButton verdadero = new JRadioButton();
-    JRadioButton falso = new JRadioButton();
+    private JTextField pregunta = new JTextField();
+    private ButtonGroup grupoBotones = new ButtonGroup();
+    private JRadioButton verdadero = new JRadioButton();
+    private JRadioButton falso = new JRadioButton();
 
-    ArrayList<Preguntas> preguntas = new ArrayList();
+    private ArrayList<Preguntas> preguntas = new ArrayList();
 
     private String titulo;
     private int cont = 0;
+    private int limite;
 
     public PrimerPanel() {
-        titulo = "Examen de " + JOptionPane.showInputDialog("Ingrese nombre de la Materia");
+        while (true) {
+            titulo = JOptionPane.showInputDialog("Ingrese nombre de la Materia");
+            if(titulo==null){System.exit(0);}
+            if (titulo.equals("")) {
+                JOptionPane.showMessageDialog(null, "El nombre de la materia no puede estar vacio", "Error", JOptionPane.WARNING_MESSAGE);
+            } else {
+                break;
+            }
+        }
+        titulo= "Examen de: "+titulo;
+        limite = setLimite();
         etiquetas();
         cajasdeTexto();
         botones();
+    }
+
+    public int setLimite() {
+
+        int x = 0;
+        while (true) {
+            try {
+                x = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad de preguntas: ", 3));
+                break;
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Ingrese un numero por favor", "Error", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+        return x;
+
     }
 
     public String getTituloCompleto() {
@@ -62,15 +85,22 @@ public class PrimerPanel extends JPanel {
 
     private void setEtiquetas() {
 
-        etiqueta1.setText("Ingrese Pregunta: " + cont);
+        etiqueta1.setText("Ingrese Pregunta: " + (cont + 1));
 
-        etiqueta2.setText("Ingrese Respuesta: " + cont);
+        etiqueta2.setText("Ingrese Respuesta: " + (cont + 1));
+
+        pregunta.setText("");
+
+        grupoBotones.clearSelection();
     }
 
     private void cajasdeTexto() {
 
         pregunta.setBounds(10, 80, 200, 23);
         add(pregunta);
+
+        grupoBotones.add(falso);
+        grupoBotones.add(verdadero);
 
         verdadero.setBounds(10, 140, 100, 23);
         verdadero.setText("VERDADERO");
@@ -88,32 +118,38 @@ public class PrimerPanel extends JPanel {
         boton2.setText("Continuar");
         add(boton2);
 
-        boton2.addActionListener(new CreadorDeVentanas());
+        boton2.addActionListener(new accionSiguiente());
 
     }
 
-    private class CreadorDeVentanas implements ActionListener {
+    private class accionSiguiente implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (!verdadero.isSelected() && falso.isSelected()) {
-                preguntas.add(new Preguntas(pregunta.getText(), false));
-                cont++;
-            } else if (verdadero.isSelected() && !falso.isSelected()) {
-                preguntas.add(new Preguntas(pregunta.getText(), true));
-                cont++;
+            if (pregunta.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "La pregunta no puede estar vacia", "Error", JOptionPane.WARNING_MESSAGE);
             } else {
-                System.out.println("nope");
+
+                if (!verdadero.isSelected() && falso.isSelected()) {
+                    preguntas.add(new Preguntas(pregunta.getText(), false));
+                    cont++;
+                } else if (verdadero.isSelected() && !falso.isSelected()) {
+                    preguntas.add(new Preguntas(pregunta.getText(), true));
+                    cont++;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Seleccione una respuesta", "Error", JOptionPane.WARNING_MESSAGE);
+                }
+
+                setEtiquetas();
+
+                if (cont == limite) {
+
+                    JframeNuevo f = new JframeNuevo(getTituloCompleto(), getPreguntas());
+                    PrimerPanel.this.setVisible(false);
+
+                }
+
             }
-
-            setEtiquetas();
-            if (cont == 10) {
-
-                JframeNuevo f = new JframeNuevo(getTituloCompleto(), getPreguntas());
-                PrimerPanel.this.setVisible(false);
-
-            }
-
         }
     }
 }
