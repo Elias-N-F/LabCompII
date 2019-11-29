@@ -21,6 +21,23 @@ public class Facultad implements Informacion {
         this.arrCarrera = new ArrayList();
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public ArrayList<Carrera> getArrCarrera() {
+        return arrCarrera;
+    }
+
+    public void setArrCarrera(ArrayList<Carrera> arrCarrera) {
+        this.arrCarrera = arrCarrera;
+    }
+
+    
     public void agregarCarrera(Carrera c) {
         if (c != null) {
             arrCarrera.add(c);

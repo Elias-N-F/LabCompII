@@ -99,6 +99,7 @@ public class Carrera implements Informacion {
                         }
 
                     }
+                    break;
                 }
 
             }

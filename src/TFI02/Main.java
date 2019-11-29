@@ -21,6 +21,8 @@ public class Main {
         m.agregarEstudiante(e);
         c.agregarMateria(m);
         f.agregarCarrera(c);
+        f.getArrCarrera().get(0).encontrarMateria("Fisica");
+        System.out.println(f.getArrCarrera().get(0).listarContenidos());
         System.out.println(f.listarContenidos());
         f.eliminarCarrera("isi");
         System.out.println(f.listarContenidos());
