@@ -4,8 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class JPanelDeMenu extends JPanel {
+    private ArrayList<Examenes> examenes = new ArrayList();
+    
     public JPanelDeMenu() {
         etiqueta();
         botones();
@@ -38,8 +41,8 @@ public class JPanelDeMenu extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            JFrameDeProfesor frame1 = new JFrameDeProfesor();
-            frame1.setVisible(true);
+            JFrameDeProfesor profesorframe = new JFrameDeProfesor();
+            profesorframe.setVisible(true);
         }
     }
 
@@ -47,10 +50,7 @@ public class JPanelDeMenu extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            JPanelDeProfesor fp=new JPanelDeProfesor();
-            fp.setVisible(false);
-            JFrameDeAlumno frame2=new JFrameDeAlumno(fp.getTituloCompleto(),fp.getPreguntas());
-            frame2.setVisible(true);
+            
         }
     }
 }

@@ -7,7 +7,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class JFrameDeMenu extends JFrame {
-    public JFrameDeMenu(){
+
+    public JFrameDeMenu() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setBounds(20, 30, 300, 400);
         setLocationRelativeTo(null);
@@ -19,12 +20,13 @@ public class JFrameDeMenu extends JFrame {
         setVisible(true);
     }
 }
-class EventosdeVentana extends WindowAdapter {
+class EventoCerrarVentana extends WindowAdapter {
 
     @Override
     public void windowClosing(WindowEvent e) {
         JOptionPane.showMessageDialog(null, "EXAMEN FINALIZADO!");
         //System.out.println("Programa finalizado!");;
     }
-
 }
+
+

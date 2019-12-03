@@ -1,5 +1,6 @@
 package TrabajoFinal;
 
+import java.awt.Frame;
 import javax.swing.*;
 
 import java.awt.event.ActionEvent;
@@ -17,26 +18,24 @@ public class JPanelDeProfesor extends JPanel {
     private JRadioButton falso = new JRadioButton();
 
     private ArrayList<Preguntas> preguntas = new ArrayList();
-
+    private String nombreProf;
     private String titulo;
     private int cont = 0;
     private int limite;
 
     public JPanelDeProfesor() {
-        while (true) {
-            titulo = JOptionPane.showInputDialog("Ingrese nombre de la Materia");
-            if(titulo==null){System.exit(0);}
-            if (titulo.equals("")) {
-                JOptionPane.showMessageDialog(null, "El nombre de la materia no puede estar vacio", "Error", JOptionPane.WARNING_MESSAGE);
-            } else {
-                break;
-            }
-        }
-        titulo= "Examen de: "+titulo;
+
+        titulo = setTitulo();
         limite = setLimite();
         etiquetas();
         cajasdeTexto();
         botones();
+    }
+
+    public Examenes getExamen() {
+        Examenes x = new Examenes(this.titulo, this.titulo, this.preguntas);
+
+        return x;
     }
 
     public int setLimite() {
@@ -58,11 +57,35 @@ public class JPanelDeProfesor extends JPanel {
         return titulo;
     }
 
-    public void setTitulo1(String titulo1) {
-        this.titulo = titulo1;
+    public String setTitulo() {
+        String x;
+        while (true) {
+            x = JOptionPane.showInputDialog("Ingrese nombre de la Materia");
+            if (x == null) {
+                return "Nombre no especificado";
+
+            }
+            if (x.equals("")) {
+                JOptionPane.showMessageDialog(null, "El nombre de la materia no puede estar vacio", "Error", JOptionPane.WARNING_MESSAGE);
+            } else {
+                break;
+            }
+        }
+
+        return "Examen de: " + x;
     }
 
-    public ArrayList getPreguntas() {
+    private void salir() {
+        //esto cierra el frame actual
+        for (Frame x : JFrame.getFrames()) {
+            if (x.getClass().equals(JFrameDeProfesor.class)) {
+                x.dispose();
+
+            }
+        }
+    }
+
+    public ArrayList<Preguntas> getPreguntas() {
         return preguntas;
     }
 
@@ -143,10 +166,7 @@ public class JPanelDeProfesor extends JPanel {
                 setEtiquetas();
 
                 if (cont == limite) {
-
-                    JPanelDeProfesor.this.setVisible(false);
-                    JFrameDeAlumno f = new JFrameDeAlumno(getTituloCompleto(), getPreguntas());
-                    f.setVisible(false);
+                    salir();
                 }
 
             }

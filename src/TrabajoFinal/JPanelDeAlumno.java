@@ -34,9 +34,7 @@ public class JPanelDeAlumno extends JPanel {
         botones();
     }
 
-    /**
-     * EL titulo no me aparece nose porque. xdxdxd -.-
-     */
+    
     public JPanelDeAlumno() {
         etiquetas();
         botones();
@@ -210,13 +208,8 @@ public class JPanelDeAlumno extends JPanel {
             cont=cont*100;
             int calif= cont/(preguntas.length*10);
 
-            /**
-             * Aca nose porque me aparece 0 cuando responde solo una pregunta
-             * buena
-             */
-
             JOptionPane.showMessageDialog(null, "Tu calificacion es " + calif+"/10");
-            System.exit(0);
+
         }
     }
 }
