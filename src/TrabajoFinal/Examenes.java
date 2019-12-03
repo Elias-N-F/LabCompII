@@ -5,13 +5,14 @@
  */
 package TrabajoFinal;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author alumno
  */
-public class Examenes {
+public class Examenes implements Serializable{
 
     private String materia;
     private ArrayList<Preguntas> preguntas;

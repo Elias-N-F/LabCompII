@@ -5,6 +5,10 @@ import javax.swing.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 
 public class JPanelDeProfesor extends JPanel {
@@ -17,18 +21,15 @@ public class JPanelDeProfesor extends JPanel {
     private JRadioButton verdadero = new JRadioButton();
     private JRadioButton falso = new JRadioButton();
 
-    private ArrayList<Preguntas> preguntas = new ArrayList();
-    private ArrayList<Examenes> examenes;
-    
+    private ArrayList<Preguntas> preguntas;
+
     private String titulo;
-    private int cont = 0;
+    private int cont;
     private int limite;
 
-    public JPanelDeProfesor(ArrayList<Examenes> r) {
-        //Es una referencia al array de tipo examenes en el JPanel del menu, 
-        //lo malo es que también pasa por el JFrame de profesor.
-        examenes=r;
-        
+    public JPanelDeProfesor() {
+        preguntas = new ArrayList();
+        cont = 0;
         titulo = setTitulo();
         limite = setLimite();
         etiquetas();
@@ -58,7 +59,7 @@ public class JPanelDeProfesor extends JPanel {
     }
 
     private String getTituloCompleto() {
-        return "Examen de: "+titulo;
+        return "Examen de: " + titulo;
     }
 
     public String setTitulo() {
@@ -80,12 +81,28 @@ public class JPanelDeProfesor extends JPanel {
     }
 
     private void salir() {
-        //esto cierra el frame actual
-       
         for (Frame x : JFrame.getFrames()) {
             if (x.getClass().equals(JFrameDeProfesor.class)) {
-                x.dispose();
-                
+                JFrameDeProfesor r = (JFrameDeProfesor) (x);
+                r.ex.add(getExamen());
+                try {
+                    ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("C:\\algo\\algo.txt"));
+                    out.writeObject(r.ex);
+                } catch (IOException l) {
+                    System.out.println("upssws");
+                }
+                r.dispose();
+            }
+        }
+    }
+
+    private void noSalir() {
+
+        for (Frame x : JFrame.getFrames()) {
+            if (x.getClass().equals(JFrameDeProfesor.class)) {
+                JFrameDeProfesor r = (JFrameDeProfesor) (x);
+                r.ex.add(getExamen());
+                r.reiniciar();
             }
         }
     }
@@ -171,9 +188,13 @@ public class JPanelDeProfesor extends JPanel {
                 setEtiquetas();
 
                 if (cont == limite) {
-                    examenes.add(getExamen());
+
                     JOptionPane.showMessageDialog(null, "Examen guardado!", "Exito", JOptionPane.INFORMATION_MESSAGE);
-                    salir();
+                    if (JOptionPane.showConfirmDialog(null, "Desea agregar otro examen?", "Continuar?", JOptionPane.YES_NO_OPTION) == 0) {
+                        noSalir();
+                    } else {
+                        salir();
+                    }
                 }
 
             }

@@ -4,12 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class JPanelDeMenu extends JPanel {
-    private ArrayList<Examenes> examenes = new ArrayList();
+
     
     public JPanelDeMenu() {
         etiqueta();
@@ -25,12 +25,10 @@ public class JPanelDeMenu extends JPanel {
         add(etiqueta1);
     }
     
-    public void addExamen(Examenes e){
-        this.examenes.add(e);
-    }
-    
+
+    JButton boton1= new JButton();
+        
     public void botones(){
-        JButton boton1= new JButton();
         JButton boton2 = new JButton();
 
         boton1.setBounds(90, 100, 100, 30);
@@ -47,8 +45,9 @@ public class JPanelDeMenu extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            JFrameDeProfesor profesorframe = new JFrameDeProfesor(JPanelDeMenu.this.examenes);
+            JFrameDeProfesor profesorframe = new JFrameDeProfesor();
             profesorframe.setVisible(true);
+            boton1.setEnabled(false);
             
         }
     }
@@ -57,7 +56,7 @@ public class JPanelDeMenu extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            JFrameIntermedio r = new JFrameIntermedio(examenes);
+            JFrameIntermedio r = new JFrameIntermedio();
             r.setVisible(true);
         }
     }

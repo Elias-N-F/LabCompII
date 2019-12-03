@@ -110,6 +110,13 @@ public class JPanelDeAlumno extends JPanel {
         falso.addActionListener(new oyenteOpcion2());
 
     }
+    public void salir(){
+           for (Frame x : JFrame.getFrames()) {
+            if (x.getClass().equals(JFrameDeAlumno.class)) {
+                x.dispose();
+            }
+        }
+    }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /**
@@ -210,7 +217,7 @@ public class JPanelDeAlumno extends JPanel {
             int calif= cont/(preguntas.length*10);
 
             JOptionPane.showMessageDialog(null, "Tu calificacion es " + calif+"/10");
-
+            salir();
         }
     }
 }
