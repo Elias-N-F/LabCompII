@@ -3,18 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package TFI02;
+package TFI01;
 
 /**
  *
  * @author alumno
  */
-public class Estudiante extends Persona{
-
-    public Estudiante(String n, String a, int l) {
-        super(n, a, l);
-    }
-
-    
-    
+public interface ParaAcomodadores {
+    public abstract Sala getSala();
+    public abstract void setSala(Sala sala);
 }

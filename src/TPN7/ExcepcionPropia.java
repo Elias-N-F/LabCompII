@@ -3,13 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package TFI02;
+package TPN7;
 
 /**
  *
  * @author alumno
  */
-public interface Informacion {
-    public int verCantidad();
-    public String listarContenidos();
+public class ExcepcionPropia extends RuntimeException{
+    public ExcepcionPropia(){
+        super();
+    }
+
+    public ExcepcionPropia(String message) {
+        super(message);
+    }
+    
 }
