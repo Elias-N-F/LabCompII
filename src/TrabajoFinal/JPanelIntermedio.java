@@ -1,28 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package TrabajoFinal;
 
-import java.awt.Font;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
-/**
- *
- * @author Usuario
- */
 public class JPanelIntermedio extends JPanel {
 
     private ArrayList<Examenes> examenes;
@@ -41,6 +27,11 @@ public class JPanelIntermedio extends JPanel {
         botones();
 
     }
+    public void paintComponent(Graphics g){
+        Dimension tam=getSize();
+        ImageIcon imagen= new ImageIcon(new ImageIcon(getClass().getResource("/Imagen/imagen1.jpg")).getImage());
+        g.drawImage(imagen.getImage(),0,0,tam.width,tam.height,null);
+    }
 
     public void etiqueta() {
         JLabel etiqueta1 = new JLabel();
@@ -51,9 +42,9 @@ public class JPanelIntermedio extends JPanel {
         }
         add(combobox);
 
-        etiqueta1.setText("Seleccion de examen");
-        etiqueta1.setBounds(40, 10, 500, 20);
-        etiqueta1.setFont(new Font("Arial", 0, 20));
+        etiqueta1.setText("Seleccione la Materia");
+        etiqueta1.setBounds(45, 10, 500, 20);
+        etiqueta1.setFont(new Font("Arial", 1, 20));
         add(etiqueta1);
     }
 

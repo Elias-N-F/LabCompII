@@ -1,14 +1,13 @@
 package TrabajoFinal;
 
-import java.awt.Frame;
 import javax.swing.*;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 
 public class JPanelDeProfesor extends JPanel {
@@ -35,6 +34,11 @@ public class JPanelDeProfesor extends JPanel {
         etiquetas();
         cajasdeTexto();
         botones();
+    }
+    public void paintComponent(Graphics g){
+        Dimension tam=getSize();
+        ImageIcon imagen= new ImageIcon(new ImageIcon(getClass().getResource("/Imagen/imagen6.jpg")).getImage());
+        g.drawImage(imagen.getImage(),0,0,tam.width,tam.height,null);
     }
 
     public Examenes getExamen() {
@@ -116,7 +120,8 @@ public class JPanelDeProfesor extends JPanel {
         JLabel etiqueta3 = new JLabel();
 
         etiqueta3.setText(getTituloCompleto());
-        etiqueta3.setBounds(75, 10, 500, 20);
+        etiqueta3.setBounds(30, 10, 500, 20);
+        etiqueta3.setFont(new Font("Arial",1,18));
         add(etiqueta3);
 
         setEtiquetas();
@@ -158,7 +163,8 @@ public class JPanelDeProfesor extends JPanel {
 
     private void botones() {
         JButton boton2 = new JButton();
-
+        verdadero.setOpaque(false);
+        falso.setOpaque(false);
         boton2.setBounds(150, 300, 100, 30);
         boton2.setText("Continuar");
         add(boton2);

@@ -28,5 +28,4 @@ public class JFrameDeAlumno extends JFrame {
         }
 
     }
-
 }

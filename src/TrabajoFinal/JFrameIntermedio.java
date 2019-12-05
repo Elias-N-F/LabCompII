@@ -1,19 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package TrabajoFinal;
 
-import java.util.ArrayList;
-import javax.swing.JFrame;
+import javax.swing.*;
 
-/**
- *
- * @author Usuario
- */
 public class JFrameIntermedio extends JFrame {
-        public JFrameIntermedio() {
+    public JFrameIntermedio() {
         //setDefaultCloseOperation(EXIT_ON_CLOSE);
         setBounds(20, 30, 300, 200);
         setLocationRelativeTo(null);
@@ -23,6 +13,6 @@ public class JFrameIntermedio extends JFrame {
         panel1.setLayout(null);
         add(panel1);
         setVisible(true);
-        
+
     }
 }

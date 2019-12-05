@@ -1,11 +1,11 @@
 package TrabajoFinal;
 
-import java.util.ArrayList;
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class JFrameDeProfesor extends JFrame {
 
-    protected ArrayList<Examenes> ex = new ArrayList();
+    protected ArrayList<Examenes> ex = new ArrayList<>();
     JPanelDeProfesor panel1 = new JPanelDeProfesor();
 
     public JFrameDeProfesor() {
@@ -26,4 +26,6 @@ public class JFrameDeProfesor extends JFrame {
         add(panel1);
         setVisible(true);
     }
+
 }
+

@@ -11,7 +11,6 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 public class JPanelDeAlumno extends JPanel {
-
     private String titulo;
     int pos = 0;
     // EStos Arreglos lo utilice para probar.
@@ -22,7 +21,7 @@ public class JPanelDeAlumno extends JPanel {
     public JPanelDeAlumno(Examenes x) {
         this.titulo = "Examen de: "+x.getMateria();
         int r= x.getPreguntas().size();
-        
+
         preguntas = new String[r];
         respuestas = new String[r];
         opcion= new String[r];
@@ -34,8 +33,14 @@ public class JPanelDeAlumno extends JPanel {
         etiquetas();
         botones();
     }
+    public void paintComponent(Graphics g){
+        Dimension tam=getSize();
+        ImageIcon imagen= new ImageIcon(new ImageIcon(getClass().getResource("/Imagen/imagen2.jpg")).getImage());
+        g.drawImage(imagen.getImage(),0,0,tam.width,tam.height,null);
+    }
 
-    
+
+
     public JPanelDeAlumno() {
         etiquetas();
         botones();
@@ -63,8 +68,8 @@ public class JPanelDeAlumno extends JPanel {
         add(etiqueta1);
 
         etiqueta2.setText(getTitulo());
-        etiqueta2.setBounds(80, 10, 500, 20);
-        etiqueta2.setFont(new Font("Arial",1,14));
+        etiqueta2.setBounds(70, 10, 500, 20);
+        etiqueta2.setFont(new Font("Arial",1,18));
         add(etiqueta2);
 
     }
@@ -84,10 +89,12 @@ public class JPanelDeAlumno extends JPanel {
 
         verdadero = new JRadioButton("Verdadero", false);
         verdadero.setBounds(10, 100, 200, 30);
+        verdadero.setOpaque(false);
         add(verdadero);
 
         falso = new JRadioButton("Falso", false);
         falso.setBounds(10, 130, 100, 30);
+        falso.setOpaque(false);
         add(falso);
 
         siguiente.setBounds(30, 200, 100, 30);
@@ -111,7 +118,7 @@ public class JPanelDeAlumno extends JPanel {
 
     }
     public void salir(){
-           for (Frame x : JFrame.getFrames()) {
+        for (Frame x : JFrame.getFrames()) {
             if (x.getClass().equals(JFrameDeAlumno.class)) {
                 x.dispose();
             }

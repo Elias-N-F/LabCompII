@@ -18,11 +18,11 @@ public class Preguntas implements Serializable {
     public Preguntas(String p, boolean r) {
         this.p = p;
         if(r){
-        this.r= "verdadero";
+            this.r= "verdadero";
         }
         else{this.r="falso";}
     }
-     
+
     public String getP() {
         return p;
     }
@@ -30,7 +30,7 @@ public class Preguntas implements Serializable {
     public String getR() {
         return r;
     }
-    
-    
-    
+
+
+
 }
