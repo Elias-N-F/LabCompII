@@ -19,15 +19,16 @@ public class JPanelDeAlumno extends JPanel {
     String[] respuestas;
     String[] opcion;
 
-    public JPanelDeAlumno(String titulo, ArrayList<Preguntas> p) {
-        this.titulo = titulo;
-
-        preguntas = new String[p.size()];
-        respuestas = new String[p.size()];
-        opcion= new String[p.size()];
-        for (int i = 0; i < p.size(); i++) {
-            preguntas[i] = p.get(i).getP();
-            respuestas[i] = p.get(i).getR();
+    public JPanelDeAlumno(Examenes x) {
+        this.titulo = "Examen de: "+x.getMateria();
+        int r= x.getPreguntas().size();
+        
+        preguntas = new String[r];
+        respuestas = new String[r];
+        opcion= new String[r];
+        for (int i = 0; i < r; i++) {
+            preguntas[i] = x.getPreguntas().get(i).getP();
+            respuestas[i] = x.getPreguntas().get(i).getR();
         }
 
         etiquetas();

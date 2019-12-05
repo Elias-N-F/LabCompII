@@ -18,13 +18,17 @@ public class JPanelDeProfesor extends JPanel {
     private JRadioButton falso = new JRadioButton();
 
     private ArrayList<Preguntas> preguntas = new ArrayList();
-    private String nombreProf;
+    private ArrayList<Examenes> examenes;
+    
     private String titulo;
     private int cont = 0;
     private int limite;
 
-    public JPanelDeProfesor() {
-
+    public JPanelDeProfesor(ArrayList<Examenes> r) {
+        //Es una referencia al array de tipo examenes en el JPanel del menu, 
+        //lo malo es que también pasa por el JFrame de profesor.
+        examenes=r;
+        
         titulo = setTitulo();
         limite = setLimite();
         etiquetas();
@@ -33,7 +37,7 @@ public class JPanelDeProfesor extends JPanel {
     }
 
     public Examenes getExamen() {
-        Examenes x = new Examenes(this.titulo, this.titulo, this.preguntas);
+        Examenes x = new Examenes(this.titulo, this.preguntas);
 
         return x;
     }
@@ -53,8 +57,8 @@ public class JPanelDeProfesor extends JPanel {
 
     }
 
-    public String getTituloCompleto() {
-        return titulo;
+    private String getTituloCompleto() {
+        return "Examen de: "+titulo;
     }
 
     public String setTitulo() {
@@ -72,15 +76,16 @@ public class JPanelDeProfesor extends JPanel {
             }
         }
 
-        return "Examen de: " + x;
+        return "" + x;
     }
 
     private void salir() {
         //esto cierra el frame actual
+       
         for (Frame x : JFrame.getFrames()) {
             if (x.getClass().equals(JFrameDeProfesor.class)) {
                 x.dispose();
-
+                
             }
         }
     }
@@ -166,6 +171,8 @@ public class JPanelDeProfesor extends JPanel {
                 setEtiquetas();
 
                 if (cont == limite) {
+                    examenes.add(getExamen());
+                    JOptionPane.showMessageDialog(null, "Examen guardado!", "Exito", JOptionPane.INFORMATION_MESSAGE);
                     salir();
                 }
 

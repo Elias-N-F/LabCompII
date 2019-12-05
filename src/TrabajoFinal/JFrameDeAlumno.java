@@ -7,12 +7,12 @@ import java.util.ArrayList;
 
 public class JFrameDeAlumno extends JFrame {
 
-    public JFrameDeAlumno(String titulo, ArrayList p) {
+    public JFrameDeAlumno(Examenes e) {
         setTitle("Examen");
         setBounds(50, 50, 360, 400);
         setLocationRelativeTo(null);
 
-        JPanelDeAlumno panelnuevo = new JPanelDeAlumno(titulo, p);
+        JPanelDeAlumno panelnuevo = new JPanelDeAlumno(e);
         panelnuevo.setLayout(null);
         add(panelnuevo);
         setVisible(true);

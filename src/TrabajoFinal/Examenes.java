@@ -12,26 +12,17 @@ import java.util.ArrayList;
  * @author alumno
  */
 public class Examenes {
-    private String profesor;
+
     private String materia;
     private ArrayList<Preguntas> preguntas;
 
-    public Examenes(String profesor, String materia, ArrayList<Preguntas> preguntas) {
-        this.profesor = profesor;
+    public Examenes(String materia, ArrayList<Preguntas> preguntas) {
+
         this.materia = materia;
         this.preguntas = preguntas;
     }
     
     
-    
-    public String getProfesor() {
-        return profesor;
-    }
-
-    public void setProfesor(String profesor) {
-        this.profesor = profesor;
-    }
-
     public String getMateria() {
         return materia;
     }
@@ -46,6 +37,11 @@ public class Examenes {
 
     public void setPreguntas(ArrayList<Preguntas> preguntas) {
         this.preguntas = preguntas;
+    }
+
+    @Override
+    public String toString() {
+        return this.getMateria();
     }
     
     
